@@ -1,0 +1,17 @@
+{
+  "name": "prismagram",
+  "version": "1.0.0",
+  "repository": "https://github.com/antaehyeon/prismagram.git",
+  "author": "Hyeon <antaehyeon@live.co.kr>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.18.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  }
+}
