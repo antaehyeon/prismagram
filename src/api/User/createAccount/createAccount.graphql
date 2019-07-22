@@ -1,0 +1,8 @@
+# Query 가 없으면 에러가 생김 (가짜 쿼리 생성)
+# type Query {
+#   something: String!
+# }
+
+type Mutation {
+  createAccount(username: String!, email: String!, firstName: String, lastname: String, bio: String): User!
+}
