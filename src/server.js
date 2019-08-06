@@ -3,6 +3,7 @@ import "src/passport.js";
 import { GraphQLServer } from "graphql-yoga";
 import { prisma } from "generated/prisma-client";
 import { authenticateJwt } from "src/passport.js";
+import { sendSecretMail } from "src/utils.js";
 import logger from "morgan";
 import schema from "src/schema.js";
 // 이런식으로 import 되어야 함
@@ -10,6 +11,8 @@ import schema from "src/schema.js";
 
 // console.log(process.env.PORT);
 // console.log("[SERVER] prisma", prisma);
+
+// sendSecretMail("ansunghoo7@gmail.com", "123");
 
 const PORT = process.env.PORT || 4000;
 
