@@ -1,4 +1,4 @@
-import { generateSecretWords } from "src/utils.js";
+import { generateSecretWords, sendSecretMail } from "src/utils.js";
 
 export default {
   Mutation: {
@@ -7,9 +7,11 @@ export default {
       const loginSecret = generateSecretWords();
       console.log(loginSecret);
       try {
+        await sendSecretMail(email, loginSecret);
         await prisma.updateUser({ data: { loginSecret }, where: { email } });
         return true;
-      } catch {
+      } catch (err) {
+        console.log("[request secret] catch error", err);
         return false;
       }
     }
