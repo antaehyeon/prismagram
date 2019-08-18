@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy, ExtractJwt } from "passport-jwt";
-import { primsa } from "generated/prisma-client";
+import { prisma } from "generated/prisma-client";
 
 // passport 는 인증 관련된 모든 일을 담당
 // jwt 토큰이나 쿠키에서 정보를 가져와서 사용자 정보에 저장(serialize)한다
@@ -18,7 +18,7 @@ const verifyUser = async (payload, done) => {
     if (user !== null) return done(null, user);
     else return done(null, false);
   } catch (err) {
-    return done(error, false);
+    return done(err, false);
   }
 };
 
@@ -26,6 +26,7 @@ const verifyUser = async (payload, done) => {
 // 안쪽은 함수(graphQL 함수)를 리턴 -> 리턴된 함수를 (req, res, next)로 실행해주는 것
 export const authenticateJwt = (req, res, next) =>
   passport.authenticate("jwt", { sessions: false }, (error, user) => {
+    console.log("[PASSPORT] authenticateJwt callback result", { user, error });
     if (user) req.user = user; // 사용자가 존재하면 사용자 정보를 req 객체에 붙여줌, express 에서는 미들웨어를 지나 라우트가 실행됨
     next();
   })(req, res, next);
